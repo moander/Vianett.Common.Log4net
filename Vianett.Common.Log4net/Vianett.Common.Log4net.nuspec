@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Vianett.Common.Log4net</id>
+    <version>$version$</version>
+    <authors>moander</authors>
+    <projectUrl>https://github.com/vianett/Vianett.Common.Log4net</projectUrl>
+    <iconUrl>https://storage.googleapis.com/vianett/img/klode/nuget64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Legacy logging library used internally by ViaNett</description>
+    <copyright>Copyright 2016 ViaNett AS</copyright>
+    <tags>vianett-internal</tags>
+  </metadata>
+  <files>
+    <file src="..\Binaries\log4net.dll" target="lib\net451" />
+  </files>
+</package>

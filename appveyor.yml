@@ -1,0 +1,31 @@
+version: 5.0.{build}
+configuration: Release
+platform: Any CPU
+skip_tags: true
+skip_commits:
+  message: /[Mm]inor/
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+build:
+  publish_nuget: true
+  verbosity: minimal
+deploy:
+- provider: Environment
+  name: PublicNuGetOrg
+  on:
+    branch: master
+environment:
+  access_token:
+    secure: uLn6BnEGC5F6st3Je39HOWAGV5gwJBA3RzqSTVNpEWN4D+dNBegvN2QT4ihP2Wy6
+on_success:
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email "appveyor@noreply.vianett.io"
+  - git config --global user.name "AppVeyor"
+  - git commit -am "AppVeyor build %appveyor_build_version%"
+  - git tag v%appveyor_build_version%
+  - git push -u origin v%appveyor_build_version%

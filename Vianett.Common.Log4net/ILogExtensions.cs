@@ -14,7 +14,7 @@ using Vianett.Common;
 /// Finest      10000
 /// Finer       20000
 /// Fine        30000
-/// 
+///
 /// Verbose     10000
 /// Trace       20000
 /// Debug       30000
@@ -103,6 +103,7 @@ public static class ILogExtensions
             o = "LogExtensions SmartErrorAsCustom (exception is null)";
         }
 
+#if !FEATURE_CORECLR
         if (exception is ThreadAbortException || exception is ThreadInterruptedException)
         {
             o = exception.GetType().Name;
@@ -111,8 +112,10 @@ public static class ILogExtensions
         else
         {
             o = exception.GetType().Name + ": " + safeGetExceptionMessage(exception);
-
         }
+#else
+            o = exception.GetType().Name + ": " + safeGetExceptionMessage(exception);
+#endif
 
         if (level < Level.Error)
         {

@@ -8,12 +8,14 @@ namespace Vianett.Common.Log4net
 {
     public static class LogUtils
     {
+#if !FEATURE_CORECLR
         public static void ConfigureTraceAndConsoleAppender()
         {
-            log4net.Config.BasicConfigurator.Configure();
+            log4net.Config.BasicConfigurator.Configure()
             log4net.Config.BasicConfigurator.Configure(new log4net.Appender.TraceAppender() { Layout = new log4net.Layout.PatternLayout("%date [%-5thread] [%property{NDC}] %-5level %logger - %message%newline") });
             //log4net.Config.BasicConfigurator.Configure(new log4net.Appender.ColoredConsoleAppender(new Vianett.Common.Log4net.Layout.DefaultFileLayout()));
         }
+#endif
 
         public static Level GetLogLevel(string level)
         {

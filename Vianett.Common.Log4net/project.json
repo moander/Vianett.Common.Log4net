@@ -7,13 +7,18 @@
       "FEATURE_CORECLR"
     ]
   },
-  "dependencies": {
-    "log4net-core-preview": "2.0.6"
-  },
   "frameworks": {
-    "netstandard1.6": {
+    "net451": {
       "dependencies": {
-        "NETStandard.Library": "1.6.1-preview1-24530-04"
+        "log4net-unsigned": "1.2.12"
+      },
+      "frameworkAssemblies": {
+        "System": "4.0.0.0"
+      }
+    },
+    "netstandard1.3": {
+      "dependencies": {
+        "log4net-core-preview": "2.0.6"
       }
     }
   }
